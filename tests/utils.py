@@ -12,4 +12,4 @@ with open(os.path.join(key_dir, "insecurepubkey.crt"), "r") as f:
 
 
 def _fetch_testing_pubkey(url="http://localhost:8080/"):
-    return requests.get(url).json()['RSAPubKey']
+    return requests.get(url).json()['rsaPubKey']

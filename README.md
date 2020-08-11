@@ -28,7 +28,7 @@ local_ciphertext, opsep_recovery_instructions = opsep_hybrid_encrypt(
 secret_recovered, rate_limit_info = opsep_hybrid_decrypt( 
     local_ciphertext_to_decrypt=local_ciphertext, 
     opsep_recovery_instructions=opsep_recovery_instructions,
-    base_url="http://localhost:8080",
+    base_url="http://localhost:8080/",
 )
 
 if your_secret == secret_recovered:

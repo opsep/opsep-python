@@ -1,6 +1,9 @@
-import requests
-from pathlib import Path
 import os
+import requests
+
+from pathlib import Path
+
+from opsep import OPSEP_URL
 
 # TODO: move test to own directory?
 key_dir = Path(__file__).absolute().parent.parent
@@ -11,5 +14,5 @@ with open(os.path.join(key_dir, "insecurepubkey.crt"), "r") as f:
     PUBKEY_STR = f.read()
 
 
-def _fetch_testing_pubkey(url="http://localhost:8080/"):
-    return requests.get(url).json()['rsaPubKey']
+def _fetch_testing_pubkey(opsep_url=OPSEP_URL):
+    return requests.get(opsep_url).json()['rsaPubKey']

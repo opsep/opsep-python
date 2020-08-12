@@ -5,7 +5,7 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import padding
 
-from opsep.utils import assert_same, _assert_valid_privkey, _assert_valid_pubkey
+from opsep.utils import _assert_same, _assert_valid_privkey, _assert_valid_pubkey
 
 
 def symmetric_encrypt(to_encrypt, confirm=True):
@@ -17,7 +17,7 @@ def symmetric_encrypt(to_encrypt, confirm=True):
 
     if confirm:
         # Can be set to false for better performance
-        assert_same(f.decrypt(ciphertext), to_encrypt)
+        _assert_same(f.decrypt(ciphertext), to_encrypt)
 
     # Once asymmetrically encrypted, we'll want to throw away the key
     return ciphertext, key

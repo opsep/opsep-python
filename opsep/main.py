@@ -3,7 +3,7 @@ from datetime import datetime
 from hashlib import sha256
 from json import dumps
 
-from opsep.opsep import perform_asymmetric_decrypt_opsep
+from opsep.opsep import perform_asymmetric_decrypt_opsep, OPSEP_URL
 from opsep.pyca import (
     symmetric_encrypt,
     symmetric_decrypt,
@@ -54,7 +54,7 @@ def opsep_hybrid_encrypt(
     return local_ciphertext, opsep_recovery_instructions
 
 
-def opsep_hybrid_decrypt(local_ciphertext_to_decrypt, opsep_recovery_instructions, base_url="http://localhost:8080/"):
+def opsep_hybrid_decrypt(local_ciphertext_to_decrypt, opsep_recovery_instructions, opsep_url=OPSEP_URL):
     """
     Recover the symmetric key from OpSep (`symmetric_key_recovered`) and then use it to (locally) decrypt the data in your DB (`secret_recovered`).
     """
@@ -62,7 +62,7 @@ def opsep_hybrid_decrypt(local_ciphertext_to_decrypt, opsep_recovery_instruction
 
     # Recover symmetric key using OpSep RSA private key
     recovery_info = perform_asymmetric_decrypt_opsep(
-        todecrypt_b64=opsep_recovery_instructions, base_url=base_url,
+        todecrypt_b64=opsep_recovery_instructions, opsep_url=opsep_url,
     )
 
     # Grab the key to use for local decryption

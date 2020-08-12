@@ -1,6 +1,8 @@
 import requests
 import json
 
+OPSEP_URL = "https://test.secondguard.com/"
+
 
 class RateLimitError(Exception):
     pass
@@ -10,10 +12,10 @@ class BadRequestError(Exception):
     pass
 
 
-def perform_asymmetric_decrypt_opsep(todecrypt_b64, base_url="http://localhost:8080/"):
+def perform_asymmetric_decrypt_opsep(todecrypt_b64, opsep_url=OPSEP_URL):
     assert type(todecrypt_b64) is bytes, todecrypt_b64
 
-    url = base_url + "api/v1/decrypt"
+    url = opsep_url + "api/v1/decrypt"
     payload = {
         "key_retrieval_ciphertext": todecrypt_b64.decode(),
     }
@@ -40,3 +42,7 @@ def perform_asymmetric_decrypt_opsep(todecrypt_b64, base_url="http://localhost:8
         "ratelimit_remaining": response["ratelimitRemaining"],
         "ratelimit_resets_in": response["ratelimitResetsIn"],
     }
+
+
+def fetch_pubkey(opsep_url=OPSEP_URL):
+    return requests.get(url).json()['rsaPubKey']

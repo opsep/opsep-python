@@ -19,7 +19,7 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/opsep/opsep-python/',
-    version='3.1.0',
+    version='3.1.1',
     install_requires=REQUIREMENTS,
     packages=find_packages(),
     classifiers=[

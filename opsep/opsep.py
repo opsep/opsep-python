@@ -12,7 +12,8 @@ class BadRequestError(Exception):
     pass
 
 
-def perform_asymmetric_decrypt_opsep(todecrypt_b64, opsep_url=OPSEP_URL):
+def perform_asymmetric_decrypt_opsep(todecrypt_b64, opsep_url):
+    assert opsep_url, opsep_url
     assert type(todecrypt_b64) is bytes, todecrypt_b64
 
     url = opsep_url + "api/v1/decrypt"
@@ -44,5 +45,6 @@ def perform_asymmetric_decrypt_opsep(todecrypt_b64, opsep_url=OPSEP_URL):
     }
 
 
-def fetch_pubkey(opsep_url=OPSEP_URL):
-    return requests.get(url).json()['rsaPubKey']
+def fetch_pubkey(opsep_url):
+    assert opsep_url, opsep_url
+    return requests.get(opsep_url).json()['rsaPubKey']

@@ -8,7 +8,7 @@ from opsep.pyca import (
 )
 
 # TODO: move to a setup class?
-from tests.utils import PUBKEY_STR, PRIVKEY_STR, _fetch_testing_pubkey
+from tests.utils import PUBKEY_STR, PRIVKEY_STR
 
 # TODO: come up with less HACKey way to test many times
 # TODO: add static decrypt test vectors

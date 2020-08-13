@@ -12,7 +12,3 @@ with open(os.path.join(key_dir, "insecureprivkey.pem"), "r") as f:
     PRIVKEY_STR = f.read()
 with open(os.path.join(key_dir, "insecurepubkey.crt"), "r") as f:
     PUBKEY_STR = f.read()
-
-
-def _fetch_testing_pubkey(opsep_url=OPSEP_URL):
-    return requests.get(opsep_url).json()['rsaPubKey']
